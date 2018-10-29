@@ -20,18 +20,37 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="0zi-he-eRb">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GkL-FH-hdG">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GkL-FH-hdG">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double-Tap To Pin And View Photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQ7-I8-JXB">
+                                        <rect key="frame" x="25" y="24.5" width="325" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="325" id="Ykc-L2-fh0"/>
+                                            <constraint firstAttribute="height" constant="21" id="ZD9-g4-H3r"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96470588235294119" green="0.65098039215686276" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="OGb-WK-qNS"/>
+                                    <constraint firstItem="KQ7-I8-JXB" firstAttribute="centerY" secondItem="GkL-FH-hdG" secondAttribute="centerY" id="QNP-ub-l8c"/>
+                                    <constraint firstItem="KQ7-I8-JXB" firstAttribute="centerX" secondItem="GkL-FH-hdG" secondAttribute="centerX" id="m9N-kE-5KT"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="GkL-FH-hdG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="8vy-7d-EP6"/>
                             <constraint firstItem="0zi-he-eRb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Aba-2g-SEd"/>
                             <constraint firstItem="0zi-he-eRb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Dbz-rT-deb"/>
                             <constraint firstItem="0zi-he-eRb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OLz-3i-TCp"/>
+                            <constraint firstItem="GkL-FH-hdG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="aCm-3C-W3E"/>
                             <constraint firstItem="0zi-he-eRb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="gBD-C2-EID"/>
+                            <constraint firstItem="GkL-FH-hdG" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ybi-fY-dTO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
