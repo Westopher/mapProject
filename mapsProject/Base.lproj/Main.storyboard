@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,6 +12,10 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapVC" customModule="mapsProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4jq-zl-Q2r"/>
+                        <viewControllerLayoutGuide type="bottom" id="KJm-Eh-I5B"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,18 +44,27 @@
                                     <constraint firstItem="KQ7-I8-JXB" firstAttribute="centerX" secondItem="GkL-FH-hdG" secondAttribute="centerX" id="m9N-kE-5KT"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUK-8A-MLG">
+                                <rect key="frame" x="309" y="597" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9GS-VO-qI0"/>
+                                    <constraint firstAttribute="width" constant="50" id="xhh-GO-zr7"/>
+                                </constraints>
+                                <state key="normal" image="locationButton"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="GkL-FH-hdG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="8vy-7d-EP6"/>
-                            <constraint firstItem="0zi-he-eRb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Aba-2g-SEd"/>
+                            <constraint firstItem="GkL-FH-hdG" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="8vy-7d-EP6"/>
+                            <constraint firstItem="0zi-he-eRb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Aba-2g-SEd"/>
                             <constraint firstItem="0zi-he-eRb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Dbz-rT-deb"/>
-                            <constraint firstItem="0zi-he-eRb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OLz-3i-TCp"/>
-                            <constraint firstItem="GkL-FH-hdG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="aCm-3C-W3E"/>
-                            <constraint firstItem="0zi-he-eRb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="gBD-C2-EID"/>
+                            <constraint firstItem="KJm-Eh-I5B" firstAttribute="top" secondItem="iUK-8A-MLG" secondAttribute="bottom" constant="20" id="MA2-0e-LmD"/>
+                            <constraint firstItem="0zi-he-eRb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="OLz-3i-TCp"/>
+                            <constraint firstItem="GkL-FH-hdG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aCm-3C-W3E"/>
+                            <constraint firstItem="0zi-he-eRb" firstAttribute="bottom" secondItem="KJm-Eh-I5B" secondAttribute="top" id="gBD-C2-EID"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iUK-8A-MLG" secondAttribute="trailing" id="pIQ-QU-uaW"/>
                             <constraint firstItem="GkL-FH-hdG" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ybi-fY-dTO"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -60,4 +72,7 @@
             <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="locationButton" width="67" height="67"/>
+    </resources>
 </document>
