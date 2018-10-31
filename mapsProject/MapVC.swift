@@ -34,7 +34,8 @@ class MapVC: UIViewController {
     extension MapVC: MKMapViewDelegate {
         func centerMapOnUserLocation() {
             guard let coordinate = locationManager.location?.coordinate else {return}
-            _ = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: 1, longitudinalMeters: 1)
+            let coordinateRegion = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+            mapView.setRegion(coordinateRegion, animated: true)
         }
     }
 
