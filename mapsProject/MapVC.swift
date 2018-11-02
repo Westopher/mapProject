@@ -26,6 +26,9 @@ class MapVC: UIViewController {
     }
 
     @IBAction func centerMapBtnWasPressed(_ sender: Any) {
+        if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
+            centerMapOnUserLocation()
+        }
     }
     
 }
