@@ -51,6 +51,12 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         @objc func dropPin(sender: UITapGestureRecognizer) {
             let touchPoint = sender.location(in: mapView)
             let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+            
+            let annotation = DroppablePin(coordinate: touchCoordinate, identifier: "droppablePin")
+            mapView.addAnnotation(annotation)
+            
+            let coordinateRegion = MKCoordinateRegion.init(center: touchCoordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+            mapView.setRegion(coordinateRegion, animated: true)
         }
     }
 
