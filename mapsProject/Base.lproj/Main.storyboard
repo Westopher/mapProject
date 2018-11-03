@@ -79,6 +79,7 @@
                     <connections>
                         <outlet property="mapView" destination="0zi-he-eRb" id="GdW-d7-tpz"/>
                         <outlet property="mapViewBottomConstraint" destination="Ao7-Ea-sVw" id="YIS-t6-ViQ"/>
+                        <outlet property="pullUpView" destination="EMq-G6-T1K" id="5Eh-IY-hEp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
