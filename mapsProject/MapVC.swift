@@ -13,6 +13,7 @@ import CoreLocation
 class MapVC: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapViewBottomConstraint: NSLayoutConstraint!
     
     var locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
