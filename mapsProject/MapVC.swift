@@ -159,10 +159,11 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
             
             let touchPoint = sender.location(in: mapView)
             let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-            
             let annotation = DroppablePin(coordinate: touchCoordinate, identifier: "droppablePin")
             mapView.addAnnotation(annotation)
             
+            print(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: 40))
+
             let coordinateRegion = MKCoordinateRegion.init(center: touchCoordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
             mapView.setRegion(coordinateRegion, animated: true)
         }
