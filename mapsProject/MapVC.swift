@@ -78,6 +78,32 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         pullUpView.addSubview(spinner!)
     }
     
+    func removeSpinner() {
+        if spinner != nil {
+            spinner?.removeFromSuperview()
+        }
+    }
+    
+    func addProgressLbl() {
+        progressLbl = UILabel()
+        progressLbl?.frame = CGRect(x: (screenSize.width / 2) - 120, y: 175, width: 240, height: 40)
+        progressLbl?.font = UIFont(name: "Avenir Next", size: 18)
+        progressLbl?.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        progressLbl?.textAlignment = .center
+        print("Your progress label is working")
+        pullUpView.addSubview(progressLbl!)
+    }
+    
+    func removeProgressLbl() {
+    if progressLbl != nil {
+        progressLbl?.removeFromSuperview()
+        }
+    }
+    
+    func removeProgressLabel() {
+        
+    }
+    
     //when the user has authorized it, centers map on location of the user
     @IBAction func centerMapBtnWasPressed(_ sender: Any) {
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
@@ -87,7 +113,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     
 }
 
-    
+
     extension MapVC: MKMapViewDelegate {
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             if annotation is MKUserLocation {
@@ -106,11 +132,16 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
             mapView.setRegion(coordinateRegion, animated: true)
         }
         
+        //when a pin is dropped, do the following actions...
         @objc func dropPin(sender: UITapGestureRecognizer) {
-            animateViewUp()
             removePin()
+            removeSpinner()
+            removeProgressLbl()
+            
+            animateViewUp()
             addSwipe()
             addSpinner()
+            addProgressLbl()
             
             let touchPoint = sender.location(in: mapView)
             let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
