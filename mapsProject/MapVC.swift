@@ -21,6 +21,8 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 1000
     
+    var screenSize = UIScreen.main.bounds
+    
     var spinner: UIActivityIndicatorView?
     var progressLbl: UILabel?
     
@@ -60,7 +62,14 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         }
     }
    
-    
+    func addSpinner() {
+        spinner = UIActivityIndicatorView()
+        spinner?.center = CGPoint(x: (screenSize.width / 2) - ((spinner?.frame.width)! / 2), y: 150)
+        spinner?.style = .whiteLarge
+        spinner?.color = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        spinner?.startAnimating()
+        pullUpView.addSubview(spinner!)
+    }
     
 
     @IBAction func centerMapBtnWasPressed(_ sender: Any) {
@@ -93,6 +102,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
             animateViewUp()
             removePin()
             addSwipe()
+            addSpinner()
             
             let touchPoint = sender.location(in: mapView)
             let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
