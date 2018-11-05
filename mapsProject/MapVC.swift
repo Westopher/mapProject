@@ -21,6 +21,9 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 1000
     
+    var spinner: UIActivityIndicatorView?
+    var progressLbl: UILabel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -29,6 +32,20 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         addDoubleTap()
     }
     
+    func addDoubleTap() {
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(dropPin(sender:)))
+        doubleTap.numberOfTapsRequired = 2
+        doubleTap.delegate = self
+        mapView.addGestureRecognizer(doubleTap)
+    }
+    
+    func addSwipe() {
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(animateViewDown))
+        swipe.direction = .down
+        pullUpView.addGestureRecognizer(swipe)
+    }
+    
+    
     func animateViewUp() {
         pullUpViewHeightConstraint.constant = 300
         UIView.animate(withDuration: 0.3) {
@@ -36,12 +53,15 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    func addDoubleTap() {
-        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(dropPin(sender:)))
-        doubleTap.numberOfTapsRequired = 2
-        doubleTap.delegate = self
-        mapView.addGestureRecognizer(doubleTap)
+    @objc func animateViewDown() {
+        pullUpViewHeightConstraint.constant = 0
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutIfNeeded()
+        }
     }
+   
+    
+    
 
     @IBAction func centerMapBtnWasPressed(_ sender: Any) {
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
@@ -72,6 +92,8 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         @objc func dropPin(sender: UITapGestureRecognizer) {
             animateViewUp()
             removePin()
+            addSwipe()
+            
             let touchPoint = sender.location(in: mapView)
             let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
             
