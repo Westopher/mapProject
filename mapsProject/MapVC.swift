@@ -12,11 +12,14 @@ import CoreLocation
 
 class MapVC: UIViewController, UIGestureRecognizerDelegate {
 
+    //mapview
     @IBOutlet weak var mapView: MKMapView!
   
+    //constraint outlets
     @IBOutlet weak var pullUpViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pullUpView: UIView!
     
+    //variables for managing user location
     var locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 1000
@@ -34,6 +37,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         addDoubleTap()
     }
     
+    //allows user to drop a pin with double tap
     func addDoubleTap() {
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(dropPin(sender:)))
         doubleTap.numberOfTapsRequired = 2
@@ -41,13 +45,14 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         mapView.addGestureRecognizer(doubleTap)
     }
     
+    //lets a user swipe down to get rid of view that pops up
     func addSwipe() {
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(animateViewDown))
         swipe.direction = .down
         pullUpView.addGestureRecognizer(swipe)
     }
     
-    
+    //raises the view when the user drops a pin
     func animateViewUp() {
         pullUpViewHeightConstraint.constant = 300
         UIView.animate(withDuration: 0.3) {
@@ -55,6 +60,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    //sends the view down when user swipes down on the view
     @objc func animateViewDown() {
         pullUpViewHeightConstraint.constant = 0
         UIView.animate(withDuration: 0.2) {
@@ -62,6 +68,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         }
     }
    
+    //adds the spinner to show the user that the app is loading images
     func addSpinner() {
         spinner = UIActivityIndicatorView()
         spinner?.center = CGPoint(x: (screenSize.width / 2) - ((spinner?.frame.width)! / 2), y: 150)
@@ -71,7 +78,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         pullUpView.addSubview(spinner!)
     }
     
-
+    //when the user has authorized it, centers map on location of the user
     @IBAction func centerMapBtnWasPressed(_ sender: Any) {
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
             centerMapOnUserLocation()
@@ -80,6 +87,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     
 }
 
+    
     extension MapVC: MKMapViewDelegate {
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             if annotation is MKUserLocation {
