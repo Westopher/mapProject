@@ -13,7 +13,8 @@ import CoreLocation
 class MapVC: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var mapViewBottomConstraint: NSLayoutConstraint!
+  
+    @IBOutlet weak var pullUpViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pullUpView: UIView!
     
     var locationManager = CLLocationManager()
@@ -26,6 +27,13 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         locationManager.delegate = self
         configureLocationServices()
         addDoubleTap()
+    }
+    
+    func animateViewUp() {
+        pullUpViewHeightConstraint.constant = 300
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     func addDoubleTap() {
@@ -62,6 +70,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         }
         
         @objc func dropPin(sender: UITapGestureRecognizer) {
+            animateViewUp()
             removePin()
             let touchPoint = sender.location(in: mapView)
             let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)

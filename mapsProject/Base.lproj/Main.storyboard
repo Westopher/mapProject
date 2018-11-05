@@ -20,8 +20,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" zoomEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zi-he-eRb">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zi-he-eRb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="666"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GkL-FH-hdG">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
@@ -44,12 +44,15 @@
                                     <constraint firstItem="KQ7-I8-JXB" firstAttribute="centerX" secondItem="GkL-FH-hdG" secondAttribute="centerX" id="m9N-kE-5KT"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EMq-G6-T1K">
-                                <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMq-G6-T1K">
+                                <rect key="frame" x="0.0" y="666" width="375" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="VeS-X2-VEK"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUK-8A-MLG">
-                                <rect key="frame" x="309" y="597" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUK-8A-MLG">
+                                <rect key="frame" x="309" y="596" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9GS-VO-qI0"/>
                                     <constraint firstAttribute="width" constant="50" id="xhh-GO-zr7"/>
@@ -78,8 +81,8 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="0zi-he-eRb" id="GdW-d7-tpz"/>
-                        <outlet property="mapViewBottomConstraint" destination="Ao7-Ea-sVw" id="YIS-t6-ViQ"/>
                         <outlet property="pullUpView" destination="EMq-G6-T1K" id="5Eh-IY-hEp"/>
+                        <outlet property="pullUpViewHeightConstraint" destination="VeS-X2-VEK" id="81T-un-rmM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
