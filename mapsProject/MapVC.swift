@@ -192,7 +192,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
                 let photosDict = json["photos"] as! Dictionary<String, AnyObject>
                 let photosDictArray = photosDict["photo"] as! [Dictionary<String, AnyObject>]
                 for photo in photosDictArray {
-                    let postUrl = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!)_k_d.jpg"
+                    let postUrl = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!)_h_d.jpg"
                     self.imageUrlArray.append(postUrl)
                 }
                 handler(true)
