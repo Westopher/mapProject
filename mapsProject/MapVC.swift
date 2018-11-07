@@ -207,7 +207,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
                 handler(true)
                 }
             }
-        }
+        
 
         func retrieveImages(handler: @escaping (_ status: Bool) -> ()) {
             imageArray = []
@@ -216,14 +216,14 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
                 Alamofire.request(url).responseImage(completionHandler: { (response)  in
                     guard let image = response.result.value else {return}
                     self.imageArray.append(image)
-                    self.progresslbl?.text = "\(self.imageArray.count)/40 Images Downloaded"
+                    self.progressLbl?.text = "\(self.imageArray.count)/40 Images Downloaded"
                     if self.imageArray.count == self.imageUrlArray.count {
                         handler(true)
                     }
             })
         }
 }
-        
+}
 
 
 extension MapVC: CLLocationManagerDelegate {
