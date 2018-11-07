@@ -173,10 +173,18 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
             let coordinateRegion = MKCoordinateRegion.init(center: touchCoordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
             mapView.setRegion(coordinateRegion, animated: true)
             
-            retreiveUrls(forAnnotation: annotation) { (Bool) in
-                print(self.imageUrlArray)
-            }
+            retreiveUrls(forAnnotation: annotation) { (finished) in
+                if finished {
+                    self.retrieveImages(handler: { (finished) in
+                        if finished {
+                            self.removeSpinner()
+                            self.removeProgressLbl()
+                        //reload label
+                }
+            })
         }
+    }
+}
         
         func removePin() {
             for annotation in mapView.annotations {
@@ -202,15 +210,20 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         }
 
         func retrieveImages(handler: @escaping (_ status: Bool) -> ()) {
-            imageArray1 = []
+            imageArray = []
             
-            for url in imageUrlArray1 {
+            for url in imageUrlArray {
                 Alamofire.request(url).responseImage(completionHandler: { (response)  in
                     guard let image = response.result.value else {return}
                     self.imageArray.append(image)
+                    self.progresslbl?.text = "\(self.imageArray.count)/40 Images Downloaded"
+                    if self.imageArray.count == self.imageUrlArray.count {
+                        handler(true)
+                    }
             })
         }
 }
+        
 
 
 extension MapVC: CLLocationManagerDelegate {
