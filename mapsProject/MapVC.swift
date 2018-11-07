@@ -36,6 +36,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     var collectionView: UICollectionView?
     
     var imageUrlArray = [String]()
+    var imageArray = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -198,12 +199,21 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
                 handler(true)
                 }
             }
-            
         }
 
+        func retrieveImages(handler: @escaping (_ status: Bool) -> ()) {
+            imageArray1 = []
+            
+            for url in imageUrlArray1 {
+                Alamofire.request(url).responseImage(completionHandler: { (response)  in
+                    guard let image = response.result.value else {return}
+                    self.imageArray.append(image)
+            })
+        }
+}
 
 
-    extension MapVC: CLLocationManagerDelegate {
+extension MapVC: CLLocationManagerDelegate {
         func configureLocationServices() {
             if authorizationStatus == .notDetermined {
                 locationManager.requestAlwaysAuthorization()
