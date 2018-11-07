@@ -171,6 +171,10 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
 
             let coordinateRegion = MKCoordinateRegion.init(center: touchCoordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
             mapView.setRegion(coordinateRegion, animated: true)
+            
+            retreiveUrls(forAnnotation: annotation) { (Bool) in
+                print(self.imageUrlArray)
+            }
         }
         
         func removePin() {
@@ -179,11 +183,24 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
             }
         }
         
+        //A function to get the url for images from alamofire. This will go through the json ////response with a for loop and return a response based on the infomration we send it //with our annotation coordinates.
         func retreiveUrls(forAnnotation annotation: DroppablePin, handler: @escaping (_ status: Bool) -> ()) {
             imageUrlArray = []
             
+            Alamofire.request(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: 40)).responseJSON { (response) in
+                guard let json = response.result.value  as? Dictionary<String, AnyObject> else { return }
+                let photosDict = json["photos"] as! Dictionary<String, AnyObject>
+                let photosDictArray = photosDict["photo"] as! [Dictionary<String, AnyObject>]
+                for photo in photosDictArray {
+                    let postUrl = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!)_k_d.jpg"
+                    self.imageUrlArray.append(postUrl)
+                }
+                handler(true)
+                }
+            }
+            
         }
-}
+
 
 
     extension MapVC: CLLocationManagerDelegate {
