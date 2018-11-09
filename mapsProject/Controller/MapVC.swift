@@ -52,6 +52,8 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         collectionView?.dataSource = self
         collectionView?.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
+        registerForPreviewing(with: self, sourceView: collectionView!)
+        
         
         pullUpView.addSubview(collectionView!)
     }
@@ -121,10 +123,6 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    func removeProgressLabel() {
-        
-    }
-    
     //when the user has authorized it, centers map on location of the user
     @IBAction func centerMapBtnWasPressed(_ sender: Any) {
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
@@ -136,6 +134,8 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
 
 
     extension MapVC: MKMapViewDelegate {
+        
+        //setting up the pin
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             if annotation is MKUserLocation {
                 return nil
@@ -280,7 +280,24 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource {
 }
 
 
-
+extension MapVC: UIViewControllerPreviewingDelegate {
+  
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = collectionView?.indexPathForItem(at: location), let cell = collectionView?.cellForItem(at: indexPath) else {return nil}
+        
+        guard let popVC = storyboard?.instantiateViewController(withIdentifier: "PopVC") as? PopVC else {return nil}
+        
+        popVC.initData(forImage: imageArray[indexPath.row])
+        
+        previewingContext.sourceRect = cell.contentView.frame
+        return popVC
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: self)
+    }
+    
+}
 
 
 
