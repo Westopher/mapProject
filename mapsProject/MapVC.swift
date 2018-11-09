@@ -81,6 +81,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     
     //sends the view down when user swipes down on the view
     @objc func animateViewDown() {
+        cancelAllSessions()
         pullUpViewHeightConstraint.constant = 0
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
@@ -157,6 +158,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
             removePin()
             removeSpinner()
             removeProgressLbl()
+            cancelAllSessions()
             
             animateViewUp()
             addSwipe()
@@ -222,7 +224,17 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
                     }
             })
         }
-}
+        }
+        
+        func cancelAllSessions() {
+            Alamofire.SessionManager.default.session.getTasksWithCompletionHandler { (URLSessionDataTask, uploadData, downloadData) in
+                URLSessionDataTask.forEach( { $0.cancel() } )
+                downloadData.forEach( { $0.cancel() } )
+            }
+        }
+        
+        
+        
 }
 
 
