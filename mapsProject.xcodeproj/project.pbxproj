@@ -91,7 +91,6 @@
 				3DA218B721825EDF0001749D /* View */,
 				3DA218B621825ED70001749D /* Controller */,
 				3DA218A421825EA80001749D /* AppDelegate.swift */,
-				3DA218A621825EA80001749D /* MapVC.swift */,
 				3DA218A821825EA80001749D /* Main.storyboard */,
 				3DA218AB21825EA90001749D /* Assets.xcassets */,
 				3DA218AD21825EA90001749D /* LaunchScreen.storyboard */,
@@ -103,6 +102,7 @@
 		3DA218B621825ED70001749D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3DA218A621825EA80001749D /* MapVC.swift */,
 				3D803F3521960E3900802E9D /* PopVC.swift */,
 			);
 			path = Controller;

@@ -100,8 +100,42 @@
                     <view key="view" contentMode="scaleToFill" id="6Mk-7b-ejS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D0P-88-n4e">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mew-M9-fLb">
+                                <rect key="frame" x="87.5" y="622" width="200" height="25"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double Tap To Dismiss" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7s-eD-3GE">
+                                        <rect key="frame" x="11.5" y="0.5" width="177" height="24"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="4Mr-9u-HfL"/>
+                                    <constraint firstItem="g7s-eD-3GE" firstAttribute="centerX" secondItem="mew-M9-fLb" secondAttribute="centerX" id="cZv-Rh-zHn"/>
+                                    <constraint firstItem="g7s-eD-3GE" firstAttribute="centerY" secondItem="mew-M9-fLb" secondAttribute="centerY" id="ca4-R1-KSm"/>
+                                    <constraint firstAttribute="height" constant="25" id="sXY-sE-XAB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="D0P-88-n4e" firstAttribute="leading" secondItem="6Mk-7b-ejS" secondAttribute="leading" id="AG0-pe-FHs"/>
+                            <constraint firstItem="D0P-88-n4e" firstAttribute="top" secondItem="XeQ-g7-IkA" secondAttribute="bottom" id="Lsq-9n-RMJ"/>
+                            <constraint firstAttribute="trailing" secondItem="D0P-88-n4e" secondAttribute="trailing" id="SDi-rv-Oxv"/>
+                            <constraint firstItem="UvF-jK-7wB" firstAttribute="top" secondItem="mew-M9-fLb" secondAttribute="bottom" constant="20" id="TbN-YP-bWa"/>
+                            <constraint firstItem="mew-M9-fLb" firstAttribute="centerX" secondItem="6Mk-7b-ejS" secondAttribute="centerX" id="ZNs-1T-phn"/>
+                            <constraint firstItem="UvF-jK-7wB" firstAttribute="top" secondItem="D0P-88-n4e" secondAttribute="bottom" id="xUK-n4-RqZ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="popImageView" destination="D0P-88-n4e" id="oqM-Hu-xzf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tmJ-zN-sLh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

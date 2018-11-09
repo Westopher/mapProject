@@ -10,6 +10,8 @@ import UIKit
 
 class PopVC: UIViewController {
 
+    @IBOutlet weak var popImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
