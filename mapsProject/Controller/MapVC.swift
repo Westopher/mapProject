@@ -113,7 +113,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         progressLbl?.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         progressLbl?.textAlignment = .center
         print("Your progress label is working")
-        progressLbl?.text = "12/40 Photos Loaded"
+//        progressLbl?.text = "12/40 Photos Loaded"
         collectionView?.addSubview(progressLbl!)
     }
     
