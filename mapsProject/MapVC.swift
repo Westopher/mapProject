@@ -160,6 +160,11 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
             removeProgressLbl()
             cancelAllSessions()
             
+            imageUrlArray = []
+            imageArray = []
+            
+            collectionView?.reloadData()
+            
             animateViewUp()
             addSwipe()
             addSpinner()
@@ -181,7 +186,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
                         if finished {
                             self.removeSpinner()
                             self.removeProgressLbl()
-                        //reload label
+                            self.collectionView?.reloadData()
                 }
             })
         }
@@ -196,8 +201,6 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         
         //A function to get the url for images from alamofire. This will go through the json ////response with a for loop and return a response based on the infomration we send it //with our annotation coordinates.
         func retreiveUrls(forAnnotation annotation: DroppablePin, handler: @escaping (_ status: Bool) -> ()) {
-            imageUrlArray = []
-            
             Alamofire.request(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: 40)).responseJSON { (response) in
                 guard let json = response.result.value  as? Dictionary<String, AnyObject> else { return }
                 let photosDict = json["photos"] as! Dictionary<String, AnyObject>
@@ -212,8 +215,6 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         
 
         func retrieveImages(handler: @escaping (_ status: Bool) -> ()) {
-            imageArray = []
-            
             for url in imageUrlArray {
                 Alamofire.request(url).responseImage(completionHandler: { (response)  in
                     guard let image = response.result.value else {return}
@@ -255,7 +256,7 @@ extension MapVC: CLLocationManagerDelegate {
 extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return imageArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -264,8 +265,11 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? PhotoCell
-        return cell!
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? PhotoCell else { return UICollectionViewCell() }
+        let imageFromIndex = imageArray[indexPath.row]
+        let imageView = UIImageView(image: imageFromIndex)
+        cell.addSubview(imageView)
+        return cell
     }
 }
 
